@@ -1,0 +1,7 @@
+# Don't forget to chmod
+
+# custom commands
+export PATH="/Users/maryannhaynie/dotfiles/bin:$PATH"
+
+# don't forget to reload with . ~/.bash_profile
+
