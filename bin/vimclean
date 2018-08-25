@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#if [ $# -eq 0 ]
+#then dir = $PWD
+#else dir = $1
+#fi
+
+#pwd = $PWD
+
+#cd $dir
+rm *~ 
+rm .[^.]*.un~
+#cd $pwd

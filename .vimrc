@@ -61,6 +61,31 @@ nmap r :redo<Enter>
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
+" Set soft wrap and linebreak to break only at ends of words
+:set wrap
+:set linebreak
+" Remove the automatic newline when enter Insert mode
+set formatoptions-=t
+" Set showbreak shows if a line has been broken or not
+:set list
+" :set listchars=tab:>-
+set listchars=tab:!·
+
+" Set a line at 80 char for good style
+set colorcolumn=80
+
+" Set g to be a modifier key to move through display lines
+vmap <D-j> gj
+vmap <D-k> gk
+vmap <D-4> g$
+vmap <D-6> g^
+vmap <D-0> g^
+nmap <D-j> gj
+nmap <D-k> gk
+nmap <D-4> g$
+nmap <D-6> g^
+nmap <D-0> g^
+"
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=a
@@ -86,8 +111,8 @@ if has("autocmd")
   augroup vimrcEx
   au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+  " For all text files set 'textwidth' to 80 characters. Was 78 before
+  autocmd FileType text setlocal textwidth=80
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -119,3 +144,12 @@ if has('langmap') && exists('+langnoremap')
   " compatible).
   set langnoremap
 endif
+
+
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" on pressing tab, insert 4 spaces
+set expandtab
