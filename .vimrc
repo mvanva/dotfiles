@@ -1,30 +1,14 @@
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2015 Mar 24
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
 endif
 
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-
-" javascript highlighting
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_ngdoc = 1
-let g:javascript_plugin_flow = 1
 
 " Enables code folding (?)
 set foldmethod=syntax
@@ -41,9 +25,6 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
-
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
@@ -57,10 +38,6 @@ set number
 " Map r to be redo
 nmap r :redo<Enter>
 
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-
 " Set soft wrap and linebreak to break only at ends of words
 :set wrap
 :set linebreak
@@ -71,8 +48,13 @@ set formatoptions-=t
 " :set listchars=tab:>-
 set listchars=tab:!·
 
-" Set a line at 80 char for good style
-set colorcolumn=80
+" Set text wrap and enforce wrapping for long lines
+:set tw=80
+:set fo+=t
+:set fo-=l
+
+" Set a line at 81 char for good style
+set colorcolumn=81
 
 " Set g to be a modifier key to move through display lines
 vmap <D-j> gj
@@ -146,10 +128,19 @@ if has('langmap') && exists('+langnoremap')
 endif
 
 
-filetype plugin indent on
+"filetype plugin indent on
 " show existing tab with 4 spaces width
 set tabstop=4
 " when indenting with '>', use 4 spaces width
 set shiftwidth=4
 " on pressing tab, insert 4 spaces
 set expandtab
+
+" Keep statusline visible
+set laststatus=2
+
+" Fast window resizing
+if bufwinnr(1)
+    map <C-W>h <c-w><
+    map <C-W>l <c-w>>
+endif
