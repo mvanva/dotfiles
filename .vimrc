@@ -7,6 +7,13 @@ if v:progname =~? "evim"
   finish
 endif
 
+" Copy into system keyboard
+set clipboard=unnamed
+"noremap <Leader>y "*y
+"noremap <Leader>p "*p
+"noremap <Leader>Y "+y
+"noremap <Leader>P "+p
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 

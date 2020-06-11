@@ -1,5 +1,25 @@
 #!/bin/bash
 
-rm *~ 
-rm .[^.]*~
-rm .[^.]*.un~
+recursive_rm()
+{
+    echo recursive cleanup in "$PWD"
+    find . -name "*~" | xargs rm -rf
+    find . -name "__pycache__" | xargs rm -rf
+    rm -rf *.egg-info
+}
+
+curr_dir=$PWD
+echo $curr_dir
+
+if [ "$1" == "" ]; then
+    recursive_rm
+fi
+
+while [ "$1" != "" ]; do
+    cd $1
+    recursive_rm
+    cd $curr_dir
+    shift
+
+done
+
